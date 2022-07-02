@@ -15,7 +15,7 @@
 <body>
     <p>Tu peso en la tierra, marte o júpiter</p>
     <p>Calcular peso en marte</p>
-
+    <!-- Utilizando toFixed()*-->
     <script type="text/javascript">
         //Creacion de variables
         var g_tierra = 9.8;
@@ -24,12 +24,11 @@
         var peso;
         var peso_final;
         var usuario= prompt("Ingrese su peso en la tierra:");
-        peso = parseInt(usuario);//Convierte en entero el numero ingresado por el usuario
+        peso = parseFloat(usuario);//Convierte en entero el numero ingresado por el usuario
         //Calcular peso en marte y jupiter
-        peso_final = peso * g_marte / g_tierra;//Calcula peso en Marte
-        peso_final = parseInt(peso_final);
+        peso_final = parseFloat((peso * g_marte / g_tierra).toFixed(2));//Calcula peso en Marte
         document.write("Tu peso en Marte es: <strong>" + peso_final + " Kilos. <strong>");
-        peso_final = parseInt(peso * g_jupiter / g_tierra);//Calcula peso en Jupiter
+        peso_final = parseFloat((peso * g_jupiter / g_tierra).toFixed(2));//Calcula peso en Jupiter
         document.write("<br/>Tu peso en Júpiter es: <strong>" + peso_final + " Kilos. <strong>");
     </script>
 </body>
