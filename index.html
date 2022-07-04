@@ -13,23 +13,84 @@
     </style>
 </head>
 <body>
-    <p>Tu peso en la tierra, marte o júpiter</p>
-    <p>Calcular peso en marte</p>
-    <!-- Utilizando toFixed()*-->
+    <h1>Calcula tu peso si estuvieras en otro planeta</h1>
+
     <script type="text/javascript">
-        //Creacion de variables
-        var g_tierra = 9.8;
-        var g_marte =3.7;
-        var g_jupiter =24.8;
-        var peso;
-        var peso_final;
-        var usuario= prompt("Ingrese su peso en la tierra:");
-        peso = parseFloat(usuario);//Convierte en entero el numero ingresado por el usuario
-        //Calcular peso en marte y jupiter
-        peso_final = parseFloat((peso * g_marte / g_tierra).toFixed(2));//Calcula peso en Marte
-        document.write("Tu peso en Marte es: <strong>" + peso_final + " Kilos. <strong>");
-        peso_final = parseFloat((peso * g_jupiter / g_tierra).toFixed(2));//Calcula peso en Jupiter
-        document.write("<br/>Tu peso en Júpiter es: <strong>" + peso_final + " Kilos. <strong>");
+        //Creacion de constantes
+        const g_tierra = 9.8;
+        const g_mercurio = 3.7;
+        const g_venus = 8.87;
+        const g_marte = 3.71;
+        const g_jupiter = 24.79;
+        const g_saturno = 10.44;
+        const g_urano = 8.87;
+        const g_neptuno = 11.15;
+        //creacion de variables
+        var p_tierra;//peso en la tierra en kg.
+        var p_planeta;//peso en un planeta x
+        var planeta;//planeta elegido
+        var planeta_n;//numero que corresponde al planeta elegido
+        //Obtener el peso en tierra
+        do{
+            p_tierra = parseFloat(prompt("Ingrese su peso en la tierra en kg.:"));
+            if(p_tierra <= 0){
+                alert("Su peso debe ser mayor que 0");
+            }
+        }while(p_tierra <= 0);
+
+        do{
+            var resultado;//falso o verdadero
+            planeta_n = parseFloat(prompt("Escriba numero entero que corresponde al " +
+            "planeta elegido: \n1. Mercurio. \n2. Venus. \n3. Marte \n4. Júpiter."+
+            "\n5. Saturno. \n6. Urano. \n7. Neptuno."));
+            //Comprueba si el numero corrsponde al planeta mensionado
+            if(planeta_n%1 !== 0){//Verifica si el numero es entero o decimal
+                alert("Ingrese un numero entero que corresponde a un planeta de la " + 
+                "lista anterior.");
+                resultado = true;
+            }else if(planeta_n > 0 && planeta_n < 8){//Compara si eligio el num de un planeta
+                resultado = false;
+            }else{
+                alert("Ingrese un numero entero menor que 8 y mayor que 0.");
+                resultado = true;
+            }
+        }while(resultado);
+        //Calcular el peso en el planeta elegido.    
+        switch(planeta_n){
+            case 1:
+                p_planeta = p_tierra * g_mercurio / g_tierra;
+                planeta = "Mercurio"
+                break;
+            case 2: 
+                p_planeta = p_tierra * g_venus / g_tierra;
+                planeta = "Venus";
+                break;
+            case 3:
+                p_planeta = p_tierra * g_marte / g_tierra;
+                planeta = "Marte";
+                break;
+            case 4: 
+                p_planeta = p_tierra * g_jupiter / g_tierra;
+                planeta = "Jupiter";
+                break;
+            case 5:
+                p_planeta = p_tierra * g_saturno / g_tierra;
+                planeta = "Saturno";
+                break;
+            case 6: 
+                p_planeta = p_tierra * g_urano / g_tierra;
+                planeta = "Urano";
+                break;
+            case 7:
+                p_planeta = p_tierra * g_neptuno / g_tierra;
+                planeta = "Neptuno";
+                break;
+            default:
+                document.write("No se ha encontrado el planeta elegido");
+        }
+        //Escribe en el navegador el resultado en kilogramos
+        document.write("El peso en <strong>" + planeta + "</strong> es: <strong>" + 
+            p_planeta.toFixed(2) + " kg.</strong>");
     </script>
 </body>
 </html>
